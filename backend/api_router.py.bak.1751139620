@@ -1,0 +1,60 @@
+# backend/api_router.py
+#
+# Single FastAPI app that exposes:
+#   • REST:  /api/system-vitals, /api/query, /api/diagnostics
+#   • WS  :  /logs/agent-events
+# ─────────────────────────────────────────────────────────────
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+
+from backend.agent_coordinator import AgentCoordinator
+from backend.routes import (
+    ws_agent_events,
+    system_vitals,
+    stats_system_router,
+    stats_llm_router,
+)
+# ───────────────────────────────
+# 1.  FastAPI app + *open* CORS
+app = FastAPI(title="Llama API")
+# NOTE:
+# • allow_origins=["*"]  → regular CORS
+# • allow_origin_regex=".*"  → adds the same lax rule for WebSocket upgrades
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_origin_regex=".*",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+# 2.  Mount routers
+app.include_router(system_vitals.router, prefix="/api")  # → /api/system-vitals
+app.include_router(ws_agent_events.router)               # → /logs/agent-events
+# 3.  “Router Facade” for the agent coordinator
+class UserInput(BaseModel):
+    input: str
+    session_id: str
+class APIRouterFacade:
+    def __init__(self) -> None:
+        self.coordinator = AgentCoordinator()
+        self.coordinator.initialize_system()
+    def process_request(self, user_input: str, session_id: str):
+        print(f"[APIRouter] Received input: {user_input}")
+        result = self.coordinator.handle_input(user_input, session_id)
+        return {"session": session_id, "input": user_input, "output": result}
+    def run_system_diagnostics(self):
+        return self.coordinator.run_diagnostics()
+_router: APIRouterFacade | None = None
+@app.on_event("startup")
+def _init_router() -> None:
+    global _router
+    _router = APIRouterFacade()
+# 4.  REST facade endpoints
+@app.post("/api/query")
+async def query(payload: UserInput):
+    assert _router is not None, "router not initialized"
+    return _router.process_request(payload.input, payload.session_id)
+@app.get("/api/diagnostics")
+async def diagnostics():
+    return _router.run_system_diagnostics()
