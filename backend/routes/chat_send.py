@@ -3,7 +3,7 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import JSONResponse
 
-router = APIRouter(prefix="/chat")
+router = APIRouter()
 
 @router.post("/send")
 async def send_chat_message(req: Request):
