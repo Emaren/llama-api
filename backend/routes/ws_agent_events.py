@@ -4,10 +4,11 @@ from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 import asyncio, json
 from datetime import datetime
 
-router = APIRouter(prefix="/logs/agent-events")
+router = APIRouter()
+
 connected_clients: set[WebSocket] = set()
 
-@router.websocket("")
+@router.websocket("/logs/agent-events")
 async def agent_events(websocket: WebSocket):
     await websocket.accept()
     print("🧠 WebSocket connection accepted")
@@ -15,13 +16,11 @@ async def agent_events(websocket: WebSocket):
 
     try:
         while True:
-            # Prevent timeout — read from client or timeout
             try:
                 await asyncio.wait_for(websocket.receive_text(), timeout=1.0)
             except asyncio.TimeoutError:
-                pass  # normal behavior — just keeps connection alive
+                pass
 
-            # Simulated message (every second)
             event = {
                 "agent": "GoalOptimizer",
                 "timestamp": datetime.utcnow().isoformat() + "Z",
