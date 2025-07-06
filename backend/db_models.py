@@ -1,30 +1,22 @@
-\"\"\"
+"""
 db_models.py – Defines basic data models for memory, session, and feedback tracking.
 Currently operates in-memory, but structured for future DB migration.
-\"\"\"
+"""
 
-from dataclasses import dataclass, field
-from typing import List, Dict, Any
-import datetime
+import uuid
+from sqlalchemy import Column, String, Text, Float, DateTime
+from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.sql import func
+from sqlalchemy.orm import declarative_base
 
-@dataclass
-class MemoryEntry:
-    content: str
-    timestamp: str = field(default_factory=lambda: datetime.datetime.now().isoformat())
-    importance: float = 0.5
-    scope: str = "general"
+Base = declarative_base()
 
-@dataclass
-class SessionData:
-    session_id: str
-    history: List[Dict[str, Any]] = field(default_factory=list)
-    memories: List[MemoryEntry] = field(default_factory=list)
+class MemoryEntry(Base):
+    __tablename__ = 'memory_entries'
 
-@dataclass
-class FeedbackRecord:
-    session_id: str
-    input_text: str
-    output_text: str
-    tags: List[str]
-    score: float
-    timestamp: str = field(default_factory=lambda: datetime.datetime.now().isoformat())
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    user_id = Column(String, index=True, nullable=False)
+    agent_name = Column(String, index=True, nullable=False)
+    content = Column(Text, nullable=False)
+    score = Column(Float, nullable=False)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())

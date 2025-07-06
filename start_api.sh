@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
-# cd into backend/ so “routes” is on the module path
+# activate virtual environment
+cd /var/www/llama-api
+source venv/bin/activate
+
+# run the FastAPI backend
 cd /var/www/llama/backend
-exec uvicorn main:app --host 0.0.0.0 --port 8003
+exec uvicorn main:app --host 127.0.0.1 --port 8005

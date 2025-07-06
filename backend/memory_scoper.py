@@ -1,20 +1,21 @@
-\"\"\"
-memory_scoper.py – Assigns a contextual scope to each memory (e.g., global, session-specific, topic-based)
-for improved relevance targeting and memory retrieval.
-\"\"\"
+"""
+memory_scoper.py – Scopes relevant memory traces based on query intent
+"""
 
 from shared.memory_types import MemoryTrace
 
-class MemoryScoper:
-    def __init__(self):
-        pass
 
-    def assign_scope(self, trace: MemoryTrace, context: dict) -> str:
-        # Example scope logic: if topic matches current session focus
-        if "topic" in context and context["topic"] in trace.tags:
-            trace.scope = "topic"
-        elif trace.session_id == context.get("session_id"):
-            trace.scope = "session"
-        else:
-            trace.scope = "global"
-        return trace.scope
+class MemoryScoper:
+    def scope(self, traces: list[MemoryTrace], query: str) -> list[MemoryTrace]:
+        query_lower = query.lower()
+
+        # 🔍 Hard-coded identity check
+        if any(p in query_lower for p in ["what's my name", "who am i", "do you remember me"]):
+            return [
+                t for t in traces
+                if any(k in t.content.lower() for k in ["my name is", "i am", "remember my name"])
+            ]
+
+        # 🧠 Fallback: return last 10 traces
+        return traces[-10:]
+
