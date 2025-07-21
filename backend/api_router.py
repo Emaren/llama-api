@@ -8,15 +8,19 @@ REST
  ├─ /api/agents/health
  ├─ /api/context
  ├─ /api/query
+ ├─ /api/chat/stats/last   ← NEW
  └─ /api/diagnostics
 WebSocket
  └─ /logs/agent-events
 """
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 from backend.agent_coordinator import AgentCoordinator
+from backend.state.token_tracker import last_chat_token_stats
 from backend.routes import (
     system_vitals_router,
     stats_system_router,
@@ -24,6 +28,7 @@ from backend.routes import (
     agents_health_router,
     context_tokens_router,
     ws_agent_events,
+    token_stats,  # ← NEW: include this route module
 )
 
 # ──────────────────────────────  FastAPI + CORS  ────────────────────────────
@@ -44,7 +49,8 @@ app.include_router(stats_system_router,   prefix="/api")
 app.include_router(stats_llm_router,      prefix="/api")
 app.include_router(agents_health_router,  prefix="/api")
 app.include_router(context_tokens_router, prefix="/api")
-app.include_router(ws_agent_events)  # WebSocket @ /logs/agent-events
+app.include_router(ws_agent_events)       # WebSocket @ /logs/agent-events
+app.include_router(token_stats.router,    prefix="/api")  # ← ✅ MOUNTED NEW ROUTES
 
 # ─────────────────────────  Facade around coordinator  ──────────────────────
 class UserInput(BaseModel):
