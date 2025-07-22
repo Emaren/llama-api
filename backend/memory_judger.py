@@ -3,7 +3,7 @@ memory_judger.py – Scores memory traces for relevance, ethical risk,
 appropriateness, and system compatibility to determine retention or removal.
 \"\"\"
 
-from shared.memory_types import MemoryTrace
+from backend.shared.memory_types import MemoryTrace
 
 class MemoryJudger:
     def score_trace(self, trace: MemoryTrace) -> dict:

@@ -1,16 +1,13 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "shared")))
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+import sys, os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 """
 memory_loader.py – Loads memory traces from persistent storage and prepares
 them for use in active memory systems.
 """
 
 import json
-from shared.memory_types import MemoryTrace
+from backend.shared.memory_types import MemoryTrace
 from backend.db_models import MemoryEntry
 from backend.db_session import async_session
 from sqlalchemy import select

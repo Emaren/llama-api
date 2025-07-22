@@ -3,7 +3,7 @@ self_reflection_generator.py – Generates tailored introspective prompts
 based on agent state, feedback, and prior memory interactions.
 \"\"\"
 
-from shared.reflection_templates import get_reflection_templates
+from backend.shared.reflection_templates import get_reflection_templates
 from backend.memory_engine import MemoryEngine
 
 class ReflectionGenerator:

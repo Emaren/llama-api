@@ -3,7 +3,7 @@ health_checker.py – Scans and reports health across backend modules,
 including memory usage, system flags, and feedback queues.
 \"\"\"
 
-from shared.system_flags import SYSTEM_FLAGS
+from backend.shared.system_flags import SYSTEM_FLAGS
 from backend.memory_health_monitor import MemoryHealthMonitor
 from backend.feedback_auditor import FeedbackAuditor
 

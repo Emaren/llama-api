@@ -3,7 +3,7 @@ config_manager.py – Centralized manager for loading and accessing system confi
 Pulls from shared config loader and caches for runtime use.
 \"\"\"
 
-from shared.config_loader import load_all_configs
+from backend.shared.config_loader import load_all_configs
 
 class ConfigManager:
     def __init__(self):

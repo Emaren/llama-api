@@ -4,7 +4,7 @@ and session metadata for continuity and personalization.
 \"\"\"
 
 import hashlib
-from shared.utils import normalize_name
+from backend.shared.utils import normalize_name
 
 class IdentityResolver:
     def __init__(self):

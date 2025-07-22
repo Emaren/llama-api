@@ -3,8 +3,8 @@ memory_diffuser.py – Spreads key memory attributes (themes, sentiment, tags)
 to related traces to enhance memory network cohesion.
 \"\"\"
 
-from shared.memory_types import MemoryTrace
-from shared.vector_math import cosine_similarity
+from backend.shared.memory_types import MemoryTrace
+from backend.shared.vector_math import cosine_similarity
 
 class MemoryDiffuser:
     def diffuse(self, memory_bank: list[MemoryTrace], core_memory: MemoryTrace) -> list[MemoryTrace]:

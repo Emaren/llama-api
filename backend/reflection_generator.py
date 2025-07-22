@@ -3,8 +3,8 @@ reflection_generator.py – Generates reflective responses based on memory input
 and introspective cues, guiding learning and self-improvement.
 \"\"\"
 
-from shared.reflection_templates import TEMPLATES
-from shared.utils import summarize
+from backend.shared.reflection_templates import TEMPLATES
+from backend.shared.utils import summarize
 
 class ReflectionGenerator:
     def __init__(self):

@@ -4,7 +4,7 @@ using a weighted combination of relevance, recency, and user engagement.
 """
 
 import time
-from shared.memory_types import MemoryTrace
+from backend.shared.memory_types import MemoryTrace
 
 
 class MemoryScorer:

@@ -5,7 +5,7 @@ context_scope_analyzer.py – Analyzes user input and assigns contextual scope
 
 import re
 import random
-from shared.query_types import QUERY_TYPES
+from backend.shared.query_types import QUERY_TYPES
 
 class ContextScopeAnalyzer:
     def __init__(self):

@@ -3,8 +3,8 @@ memory_pruner.py – Removes outdated, low-priority, or decayed memory entries
 to free up space and maintain memory health.
 """
 
-from shared.memory_types import MemoryTrace
-from shared.memory_decay import should_prune
+from backend.shared.memory_types import MemoryTrace
+from backend.shared.memory_decay import should_prune
 from typing import List
 
 class MemoryPruner:

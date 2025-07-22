@@ -1,43 +1,43 @@
-# backend/routes/ws_agent_events.py
+# Web-Socket endpoint: /logs/agent-events
 
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+from __future__ import annotations
 import asyncio, json
 from datetime import datetime
+from typing import Set
+
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
 router = APIRouter()
-
-connected_clients: set[WebSocket] = set()
+clients: Set[WebSocket] = set()
 
 @router.websocket("/logs/agent-events")
-async def agent_events(websocket: WebSocket):
-    await websocket.accept()
-    print("🧠 WebSocket connection accepted")
-    connected_clients.add(websocket)
+async def agent_events(ws: WebSocket) -> None:
+    await ws.accept()
+    clients.add(ws)
+    print("🧠 WS client connected")
 
     try:
         while True:
+            # ignore any inbound text; broadcast every ~0.75 s
             try:
-                await asyncio.wait_for(websocket.receive_text(), timeout=1.0)
+                await asyncio.wait_for(ws.receive_text(), timeout=0.75)
             except asyncio.TimeoutError:
                 pass
 
-            event = {
+            payload = {
                 "agent": "GoalOptimizer",
-                "timestamp": datetime.utcnow().isoformat() + "Z",
-                "message": "Reprioritized tasks based on engagement."
+                "timestamp": datetime.utcnow().isoformat(timespec="milliseconds") + "Z",
+                "message": "Reprioritized tasks based on engagement.",
             }
-            data = json.dumps(event)
-            print("📤 Broadcasting:", data)
-
             dead = []
-            for client in connected_clients:
+            for c in clients:
                 try:
-                    await client.send_text(data)
+                    await c.send_text(json.dumps(payload))
                 except WebSocketDisconnect:
-                    dead.append(client)
+                    dead.append(c)
             for d in dead:
-                connected_clients.discard(d)
+                clients.discard(d)
 
     except WebSocketDisconnect:
-        print("❌ Client closed WebSocket")
-        connected_clients.discard(websocket)
+        print("❌ WS client disconnected")
+        clients.discard(ws)

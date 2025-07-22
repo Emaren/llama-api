@@ -5,7 +5,7 @@ to optimize memory engine performance and accuracy.
 
 from backend.memory_metrics import MemoryMetrics
 from backend.memory_pruner import MemoryPruner
-from shared.memory_types import MemoryTrace
+from backend.shared.memory_types import MemoryTrace
 from datetime import datetime, timedelta
 
 class MemoryCleaner:

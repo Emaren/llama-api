@@ -5,7 +5,7 @@ including milestones, dependencies, and execution order.
 
 from backend.project_scoper import ProjectScoper
 from backend.prompt_composer import PromptComposer
-from shared.config_loader import load_goal_config
+from backend.shared.config_loader import load_goal_config
 
 class ProjectPlanner:
     def __init__(self):

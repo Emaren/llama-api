@@ -3,8 +3,8 @@ message_ranker.py – Assigns scores to user/assistant messages based on clarity
 and emotional weight. Can be used to improve engagement, memory scoring, and summarization.
 \"\"\"
 
-from shared.vector_math import cosine_similarity
-from shared.constants import MESSAGE_SCORING_WEIGHTS
+from backend.shared.vector_math import cosine_similarity
+from backend.shared.constants import MESSAGE_SCORING_WEIGHTS
 
 class MessageRanker:
     def __init__(self):

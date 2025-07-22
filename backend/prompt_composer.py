@@ -3,7 +3,7 @@ prompt_composer.py – Dynamically assembles prompts for agent use
 based on task type, user input, memory state, and system config.
 \"\"\"
 
-from shared.prompt_utils import format_prompt
+from backend.shared.prompt_utils import format_prompt
 from backend.context_scope_analyzer import ContextScopeAnalyzer
 from backend.memory_engine import MemoryEngine
 from backend.prompt_strategy_manager import PromptStrategyManager

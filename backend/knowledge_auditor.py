@@ -3,8 +3,8 @@ knowledge_auditor.py – Evaluates the factual integrity of stored knowledge.
 Detects outdated, contradictory, or unsupported claims and flags them for review.
 \"\"\"
 
-from shared.vector_math import cosine_similarity
-from shared.constants import KNOWLEDGE_VALIDITY_THRESHOLD
+from backend.shared.vector_math import cosine_similarity
+from backend.shared.constants import KNOWLEDGE_VALIDITY_THRESHOLD
 
 class KnowledgeAuditor:
     def __init__(self, memory_engine):

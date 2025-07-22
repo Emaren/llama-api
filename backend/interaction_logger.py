@@ -5,7 +5,7 @@ agent outputs, token usage, timestamps, and sentiment metadata.
 
 import time
 from backend.sentiment_parser import SentimentParser
-from shared.utils import get_token_count
+from backend.shared.utils import get_token_count
 
 class InteractionLogger:
     def __init__(self):

@@ -3,7 +3,7 @@ memory_health_monitor.py – Continuously scans memory traces for degradation,
 corruption, staleness, or inconsistency that could affect system behavior.
 \"\"\"
 
-from shared.memory_types import MemoryTrace
+from backend.shared.memory_types import MemoryTrace
 from datetime import datetime, timedelta
 
 STALE_THRESHOLD_DAYS = 30

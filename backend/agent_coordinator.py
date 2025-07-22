@@ -3,7 +3,7 @@
 
 import ollama  # Ensure this is uncommented
 import asyncio
-from memory_loader import load_memories
+from backend.memory_loader import load_memories
 
 # Initialize Ollama client with local HTTP endpoint (no SSL context issues)
 client = ollama.Client(host='http://localhost:11434')

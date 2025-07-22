@@ -3,8 +3,8 @@ logic_tuner.py – Refines inference chains and evaluates logical soundness
 to prevent hallucination and optimize reasoning.
 \"\"\"
 
-from shared.utils import trace_reasoning_path
-from shared.constants import LOGIC_CONFIDENCE_THRESHOLD
+from backend.shared.utils import trace_reasoning_path
+from backend.shared.constants import LOGIC_CONFIDENCE_THRESHOLD
 
 class LogicTuner:
     def __init__(self, reasoning_engine):

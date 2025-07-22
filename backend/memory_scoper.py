@@ -2,7 +2,7 @@
 memory_scoper.py – Scopes relevant memory traces based on query intent
 """
 
-from shared.memory_types import MemoryTrace
+from backend.shared.memory_types import MemoryTrace
 
 
 class MemoryScoper:

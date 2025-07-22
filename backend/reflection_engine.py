@@ -7,7 +7,7 @@ from backend.reflection_generator import ReflectionGenerator
 from backend.reflection_scheduler import ReflectionScheduler
 from backend.self_reflection_writer import SelfReflectionWriter
 from backend.memory_loader import MemoryLoader
-from shared.constants import REFLECTION_DEPTH_LIMIT
+from backend.shared.constants import REFLECTION_DEPTH_LIMIT
 
 class ReflectionEngine:
     def __init__(self):

@@ -3,7 +3,7 @@ scope_meter.py – Quantifies usage of conversational scope, measuring how much
 of the context budget is currently consumed or remaining.
 \"\"\"
 
-from shared.constants import MAX_CONTEXT_TOKENS
+from backend.shared.constants import MAX_CONTEXT_TOKENS
 
 class ScopeMeter:
     def __init__(self):

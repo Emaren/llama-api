@@ -3,7 +3,7 @@ project_scorer.py – Scores projects based on alignment with goals, resource ne
 feasibility, and impact potential.
 \"\"\"
 
-from shared.scoring_utils import score_alignment, score_feasibility, score_impact
+from backend.shared.scoring_utils import score_alignment, score_feasibility, score_impact
 
 class ProjectScorer:
     def __init__(self):

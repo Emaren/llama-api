@@ -5,7 +5,7 @@ scope stability, engagement, and error frequency.
 
 from backend.project_tracker import ProjectTracker
 from backend.health_checker import HealthChecker
-from shared.scoring_utils import compute_health_score
+from backend.shared.scoring_utils import compute_health_score
 
 class ProjectHealthTracker:
     def __init__(self):

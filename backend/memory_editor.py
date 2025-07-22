@@ -3,7 +3,7 @@ memory_editor.py – Allows manual review and correction of memory traces,
 supporting annotations, deletions, or priority adjustments.
 \"\"\"
 
-from shared.memory_types import MemoryTrace
+from backend.shared.memory_types import MemoryTrace
 
 class MemoryEditor:
     def review_trace(self, trace: MemoryTrace) -> None:

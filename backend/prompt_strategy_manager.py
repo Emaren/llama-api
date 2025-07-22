@@ -3,7 +3,7 @@ prompt_strategy_manager.py – Chooses the most effective strategy for
 prompt construction based on input scope, user intent, and system goals.
 \"\"\"
 
-from shared.strategies_config import STRATEGY_MAP
+from backend.shared.strategies_config import STRATEGY_MAP
 
 class PromptStrategyManager:
     def __init__(self):

@@ -3,7 +3,7 @@ session_classifier.py – Classifies the type of session based on recent message
 such as debug sessions, casual chats, or goal-oriented dialogues.
 \"\"\"
 
-from shared.session_types import SESSION_TYPES
+from backend.shared.session_types import SESSION_TYPES
 
 class SessionClassifier:
     def classify(self, conversation_history: list[str]) -> str:

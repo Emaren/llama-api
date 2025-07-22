@@ -4,7 +4,7 @@ memory_engine.py – Redis-backed memory engine for persistent scoped memory
 
 import redis
 import json
-from shared.memory_types import MemoryTrace
+from backend.shared.memory_types import MemoryTrace
 from backend.memory_scoper import MemoryScoper
 from backend.memory_pruner import MemoryPruner
 from backend.db_models import MemoryEntry

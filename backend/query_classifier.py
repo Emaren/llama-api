@@ -3,7 +3,7 @@ query_classifier.py – Classifies incoming queries into predefined types such a
 reflection, diagnostic, meta, or general chat to route appropriately.
 \"\"\"
 
-from shared.query_types import QUERY_TYPES
+from backend.shared.query_types import QUERY_TYPES
 
 class QueryClassifier:
     def __init__(self):

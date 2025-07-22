@@ -3,7 +3,7 @@ memory_simulator.py – Simulates memory scenarios and alternate trace evolution
 to model hypothetical system outcomes or memory alignment paths.
 \"\"\"
 
-from shared.memory_types import MemoryTrace
+from backend.shared.memory_types import MemoryTrace
 import random
 import copy
 

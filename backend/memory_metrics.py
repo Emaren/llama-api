@@ -4,7 +4,7 @@ compression ratio, decay velocity, and memory retrieval latency.
 \"\"\"
 
 from typing import List
-from shared.memory_types import MemoryTrace
+from backend.shared.memory_types import MemoryTrace
 
 class MemoryMetrics:
     def __init__(self):

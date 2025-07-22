@@ -5,7 +5,7 @@ contribute to identity, learning, or long-term planning.
 
 from backend.memory_scorer import MemoryScorer
 from backend.memory_pruner import MemoryPruner
-from shared.memory_types import MemoryTrace
+from backend.shared.memory_types import MemoryTrace
 
 class MemoryCurator:
     def __init__(self):

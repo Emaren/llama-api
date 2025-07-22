@@ -3,8 +3,8 @@ memory_tagger.py – Assigns tags to memory entries based on content, emotional 
 contextual relevance, or predefined schema.
 \"\"\"
 
-from shared.tone_utils import detect_tone
-from shared.context_filters import extract_keywords
+from backend.shared.tone_utils import detect_tone
+from backend.shared.context_filters import extract_keywords
 
 class MemoryTagger:
     def __init__(self, tagging_rules=None):

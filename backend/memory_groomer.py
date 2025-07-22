@@ -3,7 +3,7 @@ memory_groomer.py – Responsible for structural cleanup and grooming of memory 
 to maintain consistency, formatting, and efficiency before or after storage.
 \"\"\"
 
-from shared.memory_types import MemoryTrace
+from backend.shared.memory_types import MemoryTrace
 
 class MemoryGroomer:
     def groom(self, traces: list[MemoryTrace]) -> list[MemoryTrace]:

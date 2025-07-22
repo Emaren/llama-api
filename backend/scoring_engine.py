@@ -3,8 +3,8 @@ scoring_engine.py – Computes scores for sessions, memories, projects,
 or user responses using configurable weight matrices and algorithms.
 \"\"\"
 
-from shared.scoring_utils import weighted_score, normalize_score
-from shared.constants import MEMORY_SCORE_WEIGHTS, PROJECT_SCORE_WEIGHTS
+from backend.shared.scoring_utils import weighted_score, normalize_score
+from backend.shared.constants import MEMORY_SCORE_WEIGHTS, PROJECT_SCORE_WEIGHTS
 
 class ScoringEngine:
     def score_memory(self, memory_data: dict) -> float:

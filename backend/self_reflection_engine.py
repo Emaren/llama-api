@@ -7,7 +7,7 @@ from backend.reflection_generator import ReflectionGenerator
 from backend.reflection_scheduler import ReflectionScheduler
 from backend.self_reflection_writer import SelfReflectionWriter
 from backend.feedback_tracker import FeedbackTracker
-from shared.constants import SELF_REFLECTION_INTERVAL
+from backend.shared.constants import SELF_REFLECTION_INTERVAL
 
 class SelfReflectionEngine:
     def __init__(self):

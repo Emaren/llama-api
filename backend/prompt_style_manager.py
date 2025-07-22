@@ -3,7 +3,7 @@ prompt_style_manager.py – Manages stylistic presentation of prompts, including
 formality, structure, and visual embellishments (e.g., emoji or markdown emphasis).
 \"\"\"
 
-from shared.style_presets import STYLE_PRESETS
+from backend.shared.style_presets import STYLE_PRESETS
 
 class PromptStyleManager:
     def __init__(self):
